@@ -1,0 +1,27 @@
+{
+  "protocol": "train->test temporal, reported once",
+  "test_base_rate": 0.0334,
+  "results": {
+    "logreg": {
+      "roc_auc": 0.8038,
+      "pr_auc": 0.117,
+      "fit_s": 1.1
+    },
+    "random_forest": {
+      "roc_auc": 0.74,
+      "pr_auc": 0.099,
+      "fit_s": 11.3
+    },
+    "pytorch_mlp": {
+      "roc_auc": 0.8137,
+      "pr_auc": 0.169,
+      "fit_s": 5.3
+    },
+    "lightgbm": {
+      "roc_auc": 0.7597,
+      "pr_auc": 0.1107,
+      "fit_s": 1.5
+    }
+  },
+  "winner": "pytorch_mlp"
+}
