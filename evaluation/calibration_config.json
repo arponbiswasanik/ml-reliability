@@ -1,0 +1,38 @@
+{
+  "threshold_act": 0.1778,
+  "costs": {
+    "C_upgrade": 8.0,
+    "C_late": 45.0,
+    "C_expedite_late": 2.0
+  },
+  "calib_slice": {
+    "rows": 11268,
+    "late_rate": 0.0642
+  },
+  "test_metrics": {
+    "ece_raw": 0.1975,
+    "ece_calibrated": 0.0027,
+    "brier_calibrated": 0.0316,
+    "roc_auc_calibrated": 0.7365,
+    "pr_auc_calibrated": 0.0809
+  },
+  "test_outcomes": {
+    "flag_rate": 0.0048,
+    "late_coverage": 0.0223,
+    "flag_precision": 0.1556,
+    "cost_saved_pct": -0.0002
+  },
+  "policy_v2_percentile": {
+    "rule": "top-q percentile of calibrated scores",
+    "q": 0.0381,
+    "test_flags": 358,
+    "test_precision": 0.1061,
+    "test_coverage": 0.121,
+    "test_cost_saved_pct": -0.0655,
+    "test_cost_saved_pct_dollar_intervention": 0.093,
+    "break_even_precision": {
+      "$8": 0.186,
+      "$1": 0.0233
+    }
+  }
+}
