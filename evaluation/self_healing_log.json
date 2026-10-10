@@ -1,0 +1,39 @@
+{
+  "label_gap_alarm_pp": 3.0,
+  "months": [
+    {
+      "month": "2018-07",
+      "n": 2669,
+      "realized": 0.0453,
+      "predicted": 0.0201,
+      "gap_pp": 2.5,
+      "slow_alarm": false,
+      "feature_alarms": [
+        "est_window_days"
+      ],
+      "model_version": null,
+      "action": "none",
+      "promoted": false
+    },
+    {
+      "month": "2018-08",
+      "n": 2026,
+      "realized": 0.1604,
+      "predicted": 0.0431,
+      "gap_pp": 11.7,
+      "slow_alarm": true,
+      "feature_alarms": [
+        "est_window_days"
+      ],
+      "model_version": null,
+      "action": "retrain+promote",
+      "promoted": true,
+      "champ_pr": 0.1175,
+      "chal_pr": 0.3694
+    }
+  ],
+  "summary": {
+    "promotions": 1,
+    "rejections": 0
+  }
+}
