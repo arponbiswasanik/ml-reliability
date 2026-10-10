@@ -1,0 +1,145 @@
+{
+  "reference": "calibration slice (train tail 15%)",
+  "label_gap_alarm_pp": 3.0,
+  "windows": [
+    {
+      "window": "2018-05-16->2018-05-30",
+      "n": 2254,
+      "realized_late": 0.098,
+      "predicted_late": 0.0356,
+      "gap_pp": 6.2,
+      "label_alarm": true,
+      "score_psi": 0.7924,
+      "score_status": "alarm",
+      "feature_alarms": [
+        "est_window_days"
+      ],
+      "feature_warns": [],
+      "top_feature_psi": {
+        "feature": "est_window_days",
+        "psi": 0.2018,
+        "status": "alarm"
+      }
+    },
+    {
+      "window": "2018-05-30->2018-06-13",
+      "n": 2798,
+      "realized_late": 0.0161,
+      "predicted_late": 0.0312,
+      "gap_pp": -1.5,
+      "label_alarm": false,
+      "score_psi": 1.2988,
+      "score_status": "alarm",
+      "feature_alarms": [
+        "est_window_days"
+      ],
+      "feature_warns": [],
+      "top_feature_psi": {
+        "feature": "est_window_days",
+        "psi": 0.9313,
+        "status": "alarm"
+      }
+    },
+    {
+      "window": "2018-06-13->2018-06-27",
+      "n": 2874,
+      "realized_late": 0.0115,
+      "predicted_late": 0.0381,
+      "gap_pp": -2.7,
+      "label_alarm": false,
+      "score_psi": 0.7992,
+      "score_status": "alarm",
+      "feature_alarms": [
+        "est_window_days"
+      ],
+      "feature_warns": [
+        "seller_prior_rate"
+      ],
+      "top_feature_psi": {
+        "feature": "est_window_days",
+        "psi": 0.2509,
+        "status": "alarm"
+      }
+    },
+    {
+      "window": "2018-06-27->2018-07-11",
+      "n": 2297,
+      "realized_late": 0.0187,
+      "predicted_late": 0.0446,
+      "gap_pp": -2.6,
+      "label_alarm": false,
+      "score_psi": 0.7183,
+      "score_status": "alarm",
+      "feature_alarms": [],
+      "feature_warns": [
+        "seller_prior_rate"
+      ],
+      "top_feature_psi": {
+        "feature": "seller_prior_rate",
+        "psi": 0.134,
+        "status": "warn"
+      }
+    },
+    {
+      "window": "2018-07-11->2018-07-25",
+      "n": 2966,
+      "realized_late": 0.0462,
+      "predicted_late": 0.0604,
+      "gap_pp": -1.4,
+      "label_alarm": false,
+      "score_psi": 0.3918,
+      "score_status": "alarm",
+      "feature_alarms": [],
+      "feature_warns": [
+        "est_window_days",
+        "seller_prior_rate"
+      ],
+      "top_feature_psi": {
+        "feature": "est_window_days",
+        "psi": 0.1706,
+        "status": "warn"
+      }
+    },
+    {
+      "window": "2018-07-25->2018-08-08",
+      "n": 3770,
+      "realized_late": 0.1212,
+      "predicted_late": 0.0579,
+      "gap_pp": 6.3,
+      "label_alarm": true,
+      "score_psi": 0.1433,
+      "score_status": "warn",
+      "feature_alarms": [
+        "est_window_days",
+        "seller_prior_rate"
+      ],
+      "feature_warns": [],
+      "top_feature_psi": {
+        "feature": "est_window_days",
+        "psi": 0.8025,
+        "status": "alarm"
+      }
+    },
+    {
+      "window": "2018-08-08->2018-08-22",
+      "n": 1823,
+      "realized_late": 0.0872,
+      "predicted_late": 0.0561,
+      "gap_pp": 3.1,
+      "label_alarm": true,
+      "score_psi": 0.1064,
+      "score_status": "warn",
+      "feature_alarms": [
+        "est_window_days"
+      ],
+      "feature_warns": [
+        "seller_prior_rate"
+      ],
+      "top_feature_psi": {
+        "feature": "est_window_days",
+        "psi": 0.8679,
+        "status": "alarm"
+      }
+    }
+  ]
+}
