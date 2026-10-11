@@ -148,6 +148,26 @@ What the loop does on alarm: trains a challenger on the trailing labeled window 
 
 The promotion recovered discriminative power, not just calibration: PR-AUC 0.369 on spike-period data ≈ 2.8× base rate, versus a champion at barely-better-than-chance. Honest scope note: the stream period is two months, so the loop exercised one promotion and zero rejections — the rejection branch is implemented and unit-pathed, but not branch-taken. A longer stream would show both.
 
+<!-- Image 1: MLflow training runs list (retrain-2018-08) -->
+<!-- Caption: MLflow training runs — the August retraining event -->
+<img width="1919" height="952" alt="Screenshot 2026-10-10 171627" src="https://github.com/user-attachments/assets/fbcfabf2-4896-47c6-ada6-461dc67d6336" />
+
+
+<!-- Image 2: Run detail with metrics (champ_pr_auc, challenger_pr_auc, gap_pp) -->
+<!-- Caption: Run detail — trigger: slow-lane drift alarm, PR-AUC 0.117 → 0.369 -->
+<img width="1919" height="942" alt="Screenshot 2026-10-10 171826" src="https://github.com/user-attachments/assets/4f551053-f0c4-484f-95c0-9aeecd2ef4c4" />
+
+
+<!-- Image 3: Registered model delivery_risk_mlp Version 1 -->
+<!-- Caption: MLflow model registry — delivery_risk_mlp v1 promoted -->
+<img width="1919" height="932" alt="Screenshot 2026-10-10 172414" src="https://github.com/user-attachments/assets/fd015c40-1809-4961-960b-ad203196017a" />
+
+
+<!-- Image 4: Logged model detail with parameters -->
+<!-- Caption: Logged model — champion vs challenger metrics and trigger parameters -->
+<img width="1919" height="941" alt="Screenshot 2026-10-10 173217" src="https://github.com/user-attachments/assets/5239ff13-fb9f-432c-b119-b77db5865261" />
+
+
 ---
 
 ## API + Serving
@@ -158,12 +178,34 @@ The promotion recovered discriminative power, not just calibration: PR-AUC 0.369
 | `POST /v1/score` | calibrated risk for one order |
 | `POST /v1/score/batch` | score a batch, apply top-q flagging, run the fast-lane drift tripwire |
 
+FastAPI with Swagger docs at `/docs`; containerized with a healthcheck (180 s start period for model loading), CPU-only torch build, and secrets injected at runtime via `--env-file` (the API key is never baked into an image layer).
+
+<!-- Image 7: GET /health response showing healed champion promoted 2018-08 -->
+<!-- Caption: GET /health — model version confirmed as healed champion promoted 2018-08 -->
+<img width="1420" height="827" alt="Screenshot 2026-10-12 012719" src="https://github.com/user-attachments/assets/cc53eb4b-9814-4f0e-84a9-b9daadaec238" />
+
+
+<!-- Image 5: Swagger UI showing POST /v1/score request body -->
+<!-- Caption: POST /v1/score — request body -->
+<img width="1421" height="660" alt="Screenshot 2026-10-12 012550" src="https://github.com/user-attachments/assets/c1e0ab3c-340e-4791-ac33-a3bfb8af0efc" />
+
+
+<!-- Image 6: Response showing risk: 0.0167, latency 7ms -->
+<!-- Caption: POST /v1/score — response with calibrated risk and latency -->
+<img width="1420" height="841" alt="Screenshot 2026-10-12 012623" src="https://github.com/user-attachments/assets/b45e8027-1764-4b27-bd40-114e5028e71c" />
+
+
 The batch endpoint carries its own tripwire (PSI vs a reference snapshot) — the service that got burned by drift monitors itself. Verified live:
 
 | Batch (100 real August orders) | Drift result | Mean risk |
 |-------------------------------|--------------|-----------|
 | As-is | 1 chronic alarm (mean_weight_g), 1 warn | 0.0588 |
 | Distances ×2, seller late-rates inflated | chronic + exactly the three injected features | 0.1523 (2.59×) |
+
+<!-- Image 8: Batch drift tripwire terminal output -->
+<!-- Caption: POST /v1/score/batch — normal vs shifted batch: surgical alarm on injected features, mean risk 0.0588 → 0.1523 (2.59×) -->
+<img width="1381" height="785" alt="Screenshot 2026-10-12 012900" src="https://github.com/user-attachments/assets/6ae93a42-fa35-407a-8018-bbdb641faa03" />
+
 
 The surgical alarm list — injected features fire, nothing else changes — is the tripwire discriminating *what* changed, not just *that* something changed. (A smoke-test design lesson is also documented: a batch of identical orders is a degenerate distribution and alarms PSI by construction — real-data batches are the honest test.)
 
