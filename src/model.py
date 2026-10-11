@@ -34,7 +34,9 @@ def train_mlp(df, seed=42, epochs=10, lr=1e-3, wd=1e-4):
     """Train on a DataFrame with CAT+NUM+is_late columns. Returns (pre, model)."""
     torch.manual_seed(seed)
     pre = make_pre().fit(df[CAT + NUM])
-    X = pre.transform(df[CAT + NUM]).toarray().astype(np.float32)
+    X = pre.transform(df[CAT + NUM])
+    X = X.toarray() if hasattr(X, "toarray") else X
+    X = X.astype(np.float32)
     y = df["is_late"].values.astype(np.float32)
     pos_w = torch.tensor((1 - y).sum() / y.sum(), dtype=torch.float32)
     m = MLP(X.shape[1])
@@ -62,6 +64,8 @@ def load_champion(path="models/champion.pt"):
 
 def predict_df(df, pre, model):
     """Raw (uncalibrated) probabilities for a features-format DataFrame."""
-    X = pre.transform(df[CAT + NUM]).toarray().astype(np.float32)
+    X = pre.transform(df[CAT + NUM])
+    X = X.toarray() if hasattr(X, "toarray") else X
+    X = X.astype(np.float32)
     with torch.no_grad():
         return torch.sigmoid(model(torch.from_numpy(X))).numpy()
