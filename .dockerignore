@@ -1,0 +1,15 @@
+.git
+.venv
+.env
+data/raw
+data/processed/train_labels.parquet
+data/processed/test_labels.parquet
+data/processed/stream_labels.parquet
+data/processed/features.parquet
+notebooks
+tests
+__pycache__
+*.pyc
+.ipynb_checkpoints
+mlflow.db
+mlruns

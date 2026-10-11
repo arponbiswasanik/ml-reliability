@@ -1,0 +1,8 @@
+services:
+  api:
+    build: .
+    image: ml-reliability:0.1.0
+    container_name: ml-reliability
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
